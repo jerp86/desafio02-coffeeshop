@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   :root {
@@ -14,14 +14,14 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors["base-text"]};
+    color: ${({ theme }) => theme.colors['base-text']};
     -webkit-font-smoothing: antialiased;
   }
 
   body, input, textarea, button {
     font-family: ${({ theme }) => theme.fonts.regular};
     font-weight: 400;
-    font-size: ${({ theme }) => theme.textSizes["text-m"]}
+    font-size: ${({ theme }) => theme.textSizes['text-m']}
   }
 
   button {
@@ -31,4 +31,4 @@ export const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
   }
-`;
+`
