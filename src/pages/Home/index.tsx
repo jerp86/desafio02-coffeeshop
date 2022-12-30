@@ -1,1 +1,8 @@
-export const Home = () => <h1>Home</h1>
+import { Intro } from './components/Intro'
+import { HomeContainer } from './styles'
+
+export const Home = () => (
+  <HomeContainer>
+    <Intro />
+  </HomeContainer>
+)
