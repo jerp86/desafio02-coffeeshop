@@ -1,5 +1,8 @@
+import { ShoppingCart } from 'phosphor-react'
+import { QuantityInput } from '../QuantityInput'
 import { RegularText, TitleText } from '../Typography'
 import {
+  AddCartWrapper,
   CardFooter,
   CoffeeCardContainer,
   Description,
@@ -31,6 +34,13 @@ export const CoffeeCard = () => (
           9,90
         </TitleText>
       </div>
+
+      <AddCartWrapper>
+        <QuantityInput />
+        <button>
+          <ShoppingCart weight="fill" size={22} />
+        </button>
+      </AddCartWrapper>
     </CardFooter>
   </CoffeeCardContainer>
 )
