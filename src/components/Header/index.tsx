@@ -1,11 +1,14 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { HeaderButton, HeaderButtonsContainer, HeaderContainer } from './styles'
 import coffeeLogo from './../../assets/coffe-delivery-logo.svg'
+import { NavLink } from 'react-router-dom'
 
 export const Header = () => (
   <HeaderContainer>
     <div className="container">
-      <img src={coffeeLogo} alt="" />
+      <NavLink to="/">
+        <img src={coffeeLogo} alt="" />
+      </NavLink>
 
       <HeaderButtonsContainer>
         <HeaderButton variant="purple">
@@ -13,9 +16,11 @@ export const Header = () => (
           Botucatu, SP
         </HeaderButton>
 
-        <HeaderButton variant="yellow">
-          <ShoppingCart size={20} weight="fill" />
-        </HeaderButton>
+        <NavLink to="/completeOrder">
+          <HeaderButton variant="yellow">
+            <ShoppingCart size={20} weight="fill" />
+          </HeaderButton>
+        </NavLink>
       </HeaderButtonsContainer>
     </div>
   </HeaderContainer>
