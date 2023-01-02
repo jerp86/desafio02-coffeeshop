@@ -60,7 +60,7 @@ export const CardFooter = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   > div {
     display: flex;
@@ -69,6 +69,28 @@ export const CardFooter = styled.div`
 
     p {
       line-height: 1.2rem;
+    }
+  }
+`
+
+export const AddCartWrapper = styled.div`
+  width: 12rem;
+
+  > button {
+    width: 3.8rem;
+    height: 3.8rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.colors['purple-dark']};
+    color: ${({ theme }) => theme.colors['base-card']};
+    border-radius: 0.6rem;
+    margin-left: 0.4rem;
+    transition: 0.4s;
+
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.purple};
     }
   }
 `
