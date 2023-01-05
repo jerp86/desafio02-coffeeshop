@@ -26,6 +26,17 @@ export const CoffeeCartCardContainer = styled.div`
   }
 `
 
-export const ActionsContainer = styled.div``
+export const ActionsContainer = styled.div`
+  margin-top: 0.8rem;
+  height: 3.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+
+  > div {
+    max-width: 7.2rem;
+    height: 100%;
+  }
+`
 
 export const RemoveButton = styled.button``
