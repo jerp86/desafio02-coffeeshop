@@ -1,3 +1,4 @@
+export * from './Button'
 export * from './CoffeeCard'
 export * from './Header'
 export * from './InfoWithIcon'
