@@ -24,4 +24,8 @@ export const ConfirmationSectionContainer = styled.section`
     align-items: center;
     justify-content: space-between;
   }
+
+  > button {
+    margin-top: 1.6rem;
+  }
 `

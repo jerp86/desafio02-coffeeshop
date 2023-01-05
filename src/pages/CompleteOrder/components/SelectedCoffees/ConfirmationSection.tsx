@@ -1,4 +1,4 @@
-import { RegularText } from '../../../../components'
+import { Button, RegularText } from '../../../../components'
 import { ConfirmationSectionContainer } from './styles'
 
 export const ConfirmationSection = () => (
@@ -21,5 +21,7 @@ export const ConfirmationSection = () => (
         R$ 29,90
       </RegularText>
     </div>
+
+    <Button text="confirmar pedido" />
   </ConfirmationSectionContainer>
 )
