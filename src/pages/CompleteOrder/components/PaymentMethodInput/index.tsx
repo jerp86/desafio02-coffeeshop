@@ -1,7 +1,9 @@
+import { CreditCard } from 'phosphor-react'
 import { PaymentMethodContainer } from './styles'
 
 export const PaymentMethodInput = () => (
   <PaymentMethodContainer>
-    <h1>Hello World</h1>
+    <CreditCard size={16} />
+    Cartão de Crédito
   </PaymentMethodContainer>
 )
