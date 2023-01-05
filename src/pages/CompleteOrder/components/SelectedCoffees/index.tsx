@@ -1,5 +1,6 @@
 import { TitleText } from '../../../../components'
 import { CoffeeCartCard } from '../CoffeeCartCard'
+import { ConfirmationSection } from './ConfirmationSection'
 import { DetailsContainer, SelectedCoffeesContainer } from './styles'
 
 export const SelectedCoffees = () => (
@@ -10,6 +11,8 @@ export const SelectedCoffees = () => (
       <CoffeeCartCard />
       <CoffeeCartCard />
       <CoffeeCartCard />
+
+      <ConfirmationSection />
     </DetailsContainer>
   </SelectedCoffeesContainer>
 )
