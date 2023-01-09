@@ -13,6 +13,7 @@ interface ChangeCartItemQuantityProps {
 
 interface CartContextType {
   cartItems: CartItem[]
+  cartItemsTotal: number
   cartQuantity: number
   addCoffeeToCart: (coffee: CartItem) => void
   changeCartItemQuantity: (value: ChangeCartItemQuantityProps) => void
@@ -29,6 +30,11 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [cartItems, setItems] = useState<CartItem[]>([])
 
   const cartQuantity = cartItems.length
+
+  const cartItemsTotal = cartItems.reduce(
+    (acc, cur) => (acc += cur.price * cur.quantity),
+    0,
+  )
 
   const coffeeExistsInCart = (coffeeId: number) =>
     cartItems.findIndex(({ id }) => id === coffeeId)
@@ -80,6 +86,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     <CartContext.Provider
       value={{
         cartItems,
+        cartItemsTotal,
         cartQuantity,
         addCoffeeToCart,
         changeCartItemQuantity,
