@@ -3,16 +3,24 @@ import { IconWrapper, QuantityInputContainer } from './styles'
 
 interface QuantityInputProps {
   size?: 'medium' | 'small'
+  quantity: number
+  onIncrease: () => void
+  onDecrease: () => void
 }
-export const QuantityInput = ({ size = 'medium' }: QuantityInputProps) => (
+export const QuantityInput = ({
+  size = 'medium',
+  quantity,
+  onDecrease,
+  onIncrease,
+}: QuantityInputProps) => (
   <QuantityInputContainer size={size}>
-    <IconWrapper>
+    <IconWrapper onClick={onDecrease} disabled={quantity <= 1}>
       <Minus size={14} weight="fill" />
     </IconWrapper>
 
-    <input type="number" readOnly value={1} />
+    <input type="number" readOnly value={quantity} />
 
-    <IconWrapper>
+    <IconWrapper onClick={onIncrease}>
       <Plus size={14} weight="fill" />
     </IconWrapper>
   </QuantityInputContainer>
