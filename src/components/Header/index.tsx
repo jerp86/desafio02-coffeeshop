@@ -1,6 +1,6 @@
 import { MapPin, ShoppingCart } from 'phosphor-react'
 import { HeaderButton, HeaderButtonsContainer, HeaderContainer } from './styles'
-import coffeeLogo from './../../assets/coffe-delivery-logo.svg'
+import coffeeLogo from './../../assets/coffee-delivery-logo.svg'
 import { NavLink } from 'react-router-dom'
 
 export const Header = () => (
