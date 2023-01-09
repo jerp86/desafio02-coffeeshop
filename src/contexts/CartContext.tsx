@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
+import produce from 'immer'
 import { Coffee } from '../components'
 
 export interface CartItem extends Coffee {
@@ -20,7 +21,19 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [cartItems, setItems] = useState<CartItem[]>([])
 
   const addCoffeeToCart = (coffee: CartItem) => {
-    setItems((prev) => [...prev, coffee])
+    const coffeeAlreadyExistsInCart = cartItems.findIndex(
+      ({ id }) => id === coffee.id,
+    )
+
+    const newCart = produce(cartItems, (draft) => {
+      if (coffeeAlreadyExistsInCart < 0) {
+        draft.push(coffee)
+      } else {
+        draft[coffeeAlreadyExistsInCart].quantity += coffee.quantity
+      }
+    })
+
+    setItems(newCart)
   }
 
   return (
