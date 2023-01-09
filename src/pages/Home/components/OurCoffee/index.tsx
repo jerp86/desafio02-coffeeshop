@@ -1,5 +1,5 @@
-import { CoffeeCard, TitleText } from '../../components'
-import { coffees } from '../../data/coffees'
+import { CoffeeCard, TitleText } from '../../../../components'
+import { coffees } from '../../../../data/coffees'
 import { CoffeeList, OurCoffeeContainer } from './styles'
 
 export const OurCoffee = () => (
