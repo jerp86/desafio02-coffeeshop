@@ -7,15 +7,16 @@ export interface CartItem extends Coffee {
 }
 
 interface ChangeCartItemQuantityProps {
-  cartItemId: number
+  itemId: number
   type: 'increase' | 'decrease'
 }
 
 interface CartContextType {
   cartItems: CartItem[]
   cartQuantity: number
-  addCoffeeToCart: (value: CartItem) => void
+  addCoffeeToCart: (coffee: CartItem) => void
   changeCartItemQuantity: (value: ChangeCartItemQuantityProps) => void
+  removeCartItem: (itemId: number) => void
 }
 
 interface CartContextProviderProps {
@@ -47,16 +48,28 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   }
 
   const changeCartItemQuantity = ({
-    cartItemId,
+    itemId: cartItemId,
     type,
   }: ChangeCartItemQuantityProps) => {
     const newCart = produce(cartItems, (draft) => {
       const coffeeAlreadyExistsInCart = coffeeExistsInCart(cartItemId)
 
       if (coffeeAlreadyExistsInCart >= 0) {
-        const item = draft[coffeeAlreadyExistsInCart]
-        item.quantity =
-          type === 'increase' ? item.quantity + 1 : item.quantity - 1
+        const { quantity } = draft[coffeeAlreadyExistsInCart]
+        draft[coffeeAlreadyExistsInCart].quantity =
+          type === 'increase' ? quantity + 1 : quantity - 1
+      }
+    })
+
+    setItems(newCart)
+  }
+
+  const removeCartItem = (itemId: number) => {
+    const newCart = produce(cartItems, (draft) => {
+      const coffeeAlreadyExistsInCart = coffeeExistsInCart(itemId)
+
+      if (coffeeAlreadyExistsInCart >= 0) {
+        draft.splice(coffeeAlreadyExistsInCart, 1)
       }
     })
 
@@ -70,6 +83,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         cartQuantity,
         addCoffeeToCart,
         changeCartItemQuantity,
+        removeCartItem,
       }}
     >
       {children}
