@@ -1,14 +1,59 @@
+import { useFormContext } from 'react-hook-form'
 import { Input } from '../../../../components'
 import { AddressFormContainer } from './styles'
 
-export const AddressForm = () => (
-  <AddressFormContainer>
-    <Input placeholder="CEP" type="number" className="cep" />
-    <Input placeholder="Rua" className="street" />
-    <Input placeholder="Número" type="number" className="number" />
-    <Input placeholder="Complemento" className="complement" />
-    <Input placeholder="Bairro" />
-    <Input placeholder="Cidade" />
-    <Input placeholder="UF" />
-  </AddressFormContainer>
-)
+interface ErrorType {
+  errors: {
+    [key: string]: {
+      message: string
+    }
+  }
+}
+
+export const AddressForm = () => {
+  const { register, formState } = useFormContext()
+
+  const { errors } = formState as unknown as ErrorType
+
+  return (
+    <AddressFormContainer>
+      <Input
+        placeholder="CEP"
+        type="number"
+        className="cep"
+        {...register('cep')}
+        error={errors.cep?.message}
+      />
+      <Input
+        placeholder="Rua"
+        className="street"
+        {...register('street')}
+        error={errors.street?.message}
+      />
+      <Input
+        placeholder="Número"
+        type="number"
+        className="number"
+        {...register('number')}
+        error={errors.number?.message}
+      />
+      <Input
+        placeholder="Complemento"
+        className="complement"
+        {...register('complement')}
+        error={errors.complement?.message}
+      />
+      <Input
+        placeholder="Bairro"
+        {...register('district')}
+        error={errors.district?.message}
+      />
+      <Input
+        placeholder="Cidade"
+        {...register('city')}
+        error={errors.city?.message}
+      />
+      <Input placeholder="UF" {...register('uf')} error={errors.uf?.message} />
+    </AddressFormContainer>
+  )
+}
