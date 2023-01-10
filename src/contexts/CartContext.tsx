@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 import produce from 'immer'
 import { Coffee } from '../components'
 
@@ -24,10 +30,17 @@ interface CartContextProviderProps {
   children: ReactNode
 }
 
+const COFFEE_ITEMS_STORAGE_KEY = 'coffeeDelivery:cartItems'
+
 export const CartContext = createContext({} as CartContextType)
 
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
-  const [cartItems, setItems] = useState<CartItem[]>([])
+  const [cartItems, setItems] = useState<CartItem[]>(() => {
+    const storedCartItems = localStorage.getItem(COFFEE_ITEMS_STORAGE_KEY)
+    if (storedCartItems) return JSON.parse(storedCartItems)
+
+    return []
+  })
 
   const cartQuantity = cartItems.length
 
@@ -81,6 +94,10 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
     setItems(newCart)
   }
+
+  useEffect(() => {
+    localStorage.setItem(COFFEE_ITEMS_STORAGE_KEY, JSON.stringify(cartItems))
+  }, [cartItems])
 
   return (
     <CartContext.Provider
