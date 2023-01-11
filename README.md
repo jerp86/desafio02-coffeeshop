@@ -72,7 +72,7 @@ Após logar em sua conta, você deve duplicar o Layout do desafio. Para isso, ba
 
 | Cor           | Hexadecimal                                                      |
 | ------------- | ---------------------------------------------------------------- |
-| white        | ![#8047F8](https://via.placeholder.com/10/8047F8?text=+) #8047F8 |
+| white        | ![#FFFFFF](https://via.placeholder.com/10/FFFFFF?text=+) #FFFFFF |
 | background   | ![#FAFAFA](https://via.placeholder.com/10/FAFAFA?text=+) #FAFAFA |
 | base-card      | ![#F3F2F2](https://via.placeholder.com/10/F3F2F2?text=+) #F3F2F2 |
 | base-input    | ![#EDEDED](https://via.placeholder.com/10/EDEDED?text=+) #EDEDED |
