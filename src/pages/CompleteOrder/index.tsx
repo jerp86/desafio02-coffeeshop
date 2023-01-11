@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
 import { CompleteOrderForm } from './components/CompleteOrderForm'
 import { SelectedCoffees } from './components/SelectedCoffees'
@@ -31,13 +33,19 @@ export type OrderData = z.infer<typeof confirmOrderFormValidationSchema>
 type ConfirmOrderFormData = OrderData
 
 export const CompleteOrder = () => {
+  const navigate = useNavigate()
+
   const confirmOrderForm = useForm<ConfirmOrderFormData>({
     resolver: zodResolver(confirmOrderFormValidationSchema),
   })
 
   const { handleSubmit } = confirmOrderForm
 
-  const handleConfirmOrder = (data: ConfirmOrderFormData) => {}
+  const handleConfirmOrder = (data: ConfirmOrderFormData) => {
+    navigate('/orderConfirmed', {
+      state: data,
+    })
+  }
 
   return (
     <FormProvider {...confirmOrderForm}>
