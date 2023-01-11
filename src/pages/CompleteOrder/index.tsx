@@ -5,6 +5,12 @@ import { CompleteOrderForm } from './components/CompleteOrderForm'
 import { SelectedCoffees } from './components/SelectedCoffees'
 import { CompleteOrderContainer } from './style'
 
+enum PaymentMethods {
+  credit = 'credit',
+  debit = 'debit',
+  money = 'money',
+}
+
 const confirmOrderFormValidationSchema = z.object({
   cep: z.string().min(1, 'Informe o CEP'),
   street: z.string().min(1, 'Informe o Rua'),
@@ -13,6 +19,11 @@ const confirmOrderFormValidationSchema = z.object({
   district: z.string().min(1, 'Informe o Bairro'),
   city: z.string().min(1, 'Informe a Cidade'),
   uf: z.string().min(1, 'Informe a UF'),
+  paymentMethod: z.nativeEnum(PaymentMethods, {
+    errorMap: () => {
+      return { message: 'Informe o método de pagamento' }
+    },
+  }),
 })
 
 export type OrderData = z.infer<typeof confirmOrderFormValidationSchema>
