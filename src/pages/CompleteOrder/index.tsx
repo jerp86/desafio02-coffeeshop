@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { FormProvider, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { z } from 'zod'
+import { useCart } from '../../contexts/CartContext'
 import { CompleteOrderForm } from './components/CompleteOrderForm'
 import { SelectedCoffees } from './components/SelectedCoffees'
 import { CompleteOrderContainer } from './style'
@@ -34,6 +35,7 @@ type ConfirmOrderFormData = OrderData
 
 export const CompleteOrder = () => {
   const navigate = useNavigate()
+  const { cleanCart } = useCart()
 
   const confirmOrderForm = useForm<ConfirmOrderFormData>({
     resolver: zodResolver(confirmOrderFormValidationSchema),
@@ -45,6 +47,7 @@ export const CompleteOrder = () => {
     navigate('/orderConfirmed', {
       state: data,
     })
+    cleanCart()
   }
 
   return (
