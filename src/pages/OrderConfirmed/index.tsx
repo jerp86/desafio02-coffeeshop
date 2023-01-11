@@ -1,12 +1,29 @@
-import { InfoWithIcon, RegularText, TitleText } from '../../components'
-import { OrderConfirmedContainer, OrderDetailsContainer } from './styles'
-
-import confirmedOrder from './../../assets/confirmed-order.svg'
+import { useEffect } from 'react'
 import { Clock, CurrencyDollar, MapPin } from 'phosphor-react'
 import { useTheme } from 'styled-components'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { InfoWithIcon, RegularText, TitleText } from '../../components'
+import { OrderConfirmedContainer, OrderDetailsContainer } from './styles'
+import { OrderData } from '../CompleteOrder'
+import { paymentMethods } from '../CompleteOrder/components/CompleteOrderForm/PaymentMethodOptions'
+import confirmedOrder from './../../assets/confirmed-order.svg'
+
+interface LocationType {
+  state: OrderData
+}
 
 export const OrderConfirmed = () => {
   const { colors } = useTheme()
+  const { state } = useLocation() as unknown as LocationType
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!state) {
+      navigate('/')
+    }
+  }, [navigate, state])
+
+  if (!state) return null
 
   return (
     <OrderConfirmedContainer className="container">
@@ -24,9 +41,12 @@ export const OrderConfirmed = () => {
             iconBg={colors.purple}
             text={
               <RegularText>
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
+                Entrega em{' '}
+                <strong>
+                  {state.street}, {state.number}
+                </strong>
                 <br />
-                Farrapos - Porto Alegre, RS
+                {state.district} - {state.city}, {state.uf}
               </RegularText>
             }
           />
@@ -50,7 +70,7 @@ export const OrderConfirmed = () => {
               <RegularText>
                 Pagamento na entrega
                 <br />
-                <strong>Cartão de Crédito</strong>
+                <strong>{paymentMethods[state.paymentMethod].label}</strong>
               </RegularText>
             }
           />
